@@ -10,4 +10,7 @@ class HeroBookApplicationTests {
 	void contextLoads() {
 	}
 
+	//When I view all the heros
+	//Then I can see names of all heros
+
 }
