@@ -21,10 +21,9 @@ public class HeroBookTest {
     MockMvc mockmvc;
 
     @Test
-    public void getAllHerosTest() throws Exception {
+    public void postHerosTest() throws Exception {
         HeroDto heroDto = new HeroDto("Tim");
         ObjectMapper objectMapper = new ObjectMapper();
-
      mockmvc.perform(post("/hero")
              .content(objectMapper.writeValueAsString(heroDto))
              .contentType(MediaType.APPLICATION_JSON)
