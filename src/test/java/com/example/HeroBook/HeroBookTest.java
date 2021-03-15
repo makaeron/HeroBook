@@ -1,6 +1,7 @@
 package com.example.HeroBook;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,11 +20,13 @@ public class HeroBookTest {
     @Autowired
     MockMvc mockmvc;
 
-
     @Test
     public void getAllHerosTest() throws Exception {
+        HeroDto heroDto = new HeroDto("Tim");
+        ObjectMapper objectMapper = new ObjectMapper();
+
      mockmvc.perform(post("/hero")
-             .content("")
+             .content(objectMapper.writeValueAsString(heroDto))
              .contentType(MediaType.APPLICATION_JSON)
      ).andExpect(status().isOk());
     }
