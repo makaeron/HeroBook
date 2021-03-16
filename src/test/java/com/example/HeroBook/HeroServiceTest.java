@@ -35,11 +35,16 @@ public class HeroServiceTest {
     }
 
     @Test
-    public void getHeroServiceTest(){
+    public void getHeroServiceTest() {
         List<HeroEntity> heroEntity = new ArrayList<>();
+        heroEntity.add(new HeroEntity("batman"));
         when(heroRepository.findAll()).thenReturn(heroEntity);
+
         List<HeroDto> response = heroService.getAll();
-        assertEquals(null, response);
+
+        List<HeroDto> expected = new ArrayList<>();
+        expected.add(new HeroDto("batman"));
+        assertEquals(expected, response);
     }
 
 }

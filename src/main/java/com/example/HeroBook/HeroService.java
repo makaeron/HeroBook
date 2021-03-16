@@ -1,9 +1,12 @@
 package com.example.HeroBook;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
 public class HeroService {
 
     @Autowired
@@ -16,6 +19,7 @@ public class HeroService {
     }
 
     public List<HeroDto> getAll() {
-        return null;
+        List<HeroEntity> heroEntityList = heroRepository.findAll();
+        return heroEntityList.stream().map(heroEntity -> new HeroDto(heroEntity.getName())).collect(Collectors.toList());
     }
 }

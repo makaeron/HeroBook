@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -27,6 +28,7 @@ public class HeroBookTest {
      mockmvc.perform(post("/hero")
              .content(objectMapper.writeValueAsString(heroDto))
              .contentType(MediaType.APPLICATION_JSON)
-     ).andExpect(status().isOk());
+     ).andExpect(status().isOk())
+     .andExpect(jsonPath("name").value("Tim"));
     }
 }
