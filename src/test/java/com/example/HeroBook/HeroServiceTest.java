@@ -6,7 +6,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.security.Provider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -21,17 +23,23 @@ public class HeroServiceTest {
     HeroRepository heroRepository;
 
     @Test
-    public void postHeroServiceTest(){
-
+    public void postHeroServiceTest() {
         //object being passed
         HeroDto heroDto = new HeroDto("superman");
         HeroEntity heroEntity = new HeroEntity(heroDto.getName());
         when(heroRepository.save(any())).thenReturn(heroEntity);
-
         //service call/. saves object and returns saved object
-        HeroDto response= heroService.postHero(heroDto);
+        HeroDto response = heroService.postHero(heroDto);
         //compare saved(service call) object with heroDTO
-        assertEquals(heroDto,response);
+        assertEquals(heroDto, response);
+    }
+
+    @Test
+    public void getHeroServiceTest(){
+        List<HeroEntity> heroEntity = new ArrayList<>();
+        when(heroRepository.findAll()).thenReturn(heroEntity);
+        List<HeroDto> response = heroService.getAll();
+        assertEquals(null, response);
     }
 
 }
