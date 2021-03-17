@@ -13,9 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,7 +32,19 @@ public class HeroBookTest {
              .content(objectMapper.writeValueAsString(heroDto))
              .contentType(MediaType.APPLICATION_JSON)
      ).andExpect(status().isOk())
-     .andExpect(jsonPath("name").value("Clark"));
+     .andExpect(jsonPath("name").value("Clark"))
+             .andExpect(jsonPath("image").value("img"))
+             .andExpect(jsonPath("heroName").value("superman"))
+             .andExpect(jsonPath("height").value(6.1))
+             .andExpect(jsonPath("weight").value(180))
+             .andExpect(jsonPath("specialPower").value("heat vision"))
+             .andExpect(jsonPath("intelligence").value(160))
+             .andExpect(jsonPath("strength").value(250))
+             .andExpect(jsonPath("power").value("Flight"))
+             .andExpect(jsonPath("speed").value(200))
+             .andExpect(jsonPath("agility").value(20))
+             .andExpect(jsonPath("description").value("Man of steel"))
+             .andExpect(jsonPath("story").value("alien from destroyed planet"));
     }
 
     @Test
