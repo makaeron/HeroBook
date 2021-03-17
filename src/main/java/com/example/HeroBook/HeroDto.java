@@ -8,5 +8,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HeroDto {
+    String image; 
     String name;
+    String heroName;
+    double height;
+    double weight;
+    String specialPower;
+    double intelligence;
+    double strength;
+    String power;
+    double speed;
+    double agility;
+    String description; 
+    String story;
 }

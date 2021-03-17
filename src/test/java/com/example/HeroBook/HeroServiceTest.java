@@ -25,8 +25,8 @@ public class HeroServiceTest {
     @Test
     public void postHeroServiceTest() {
         //object being passed
-        HeroDto heroDto = new HeroDto("superman");
-        HeroEntity heroEntity = new HeroEntity(heroDto.getName());
+        HeroDto heroDto = new HeroDto("img","Clark","superman",6.1,180,"heat vision",160,250,"Flight",200,20,"Man of steel","alien from destroyed planet");
+        HeroEntity heroEntity = new HeroEntity(heroDto.getImage(),heroDto.getName(),heroDto.getHeroName(),heroDto.getHeight(),heroDto.getWeight(),heroDto.getSpecialPower(),heroDto.getIntelligence(),heroDto.getStrength(),heroDto.getPower(),heroDto.getSpeed(),heroDto.getAgility(),heroDto.getDescription(),heroDto.getStory());
         when(heroRepository.save(any())).thenReturn(heroEntity);
         //service call/. saves object and returns saved object
         HeroDto response = heroService.postHero(heroDto);
@@ -36,14 +36,15 @@ public class HeroServiceTest {
 
     @Test
     public void getHeroServiceTest() {
+        HeroDto heroDto = new HeroDto("img","Bruce","batman",6.2,180,"money",160,100,"gadgets",10,15,"Dark Knight","lost parents in an alley way");
         List<HeroEntity> heroEntity = new ArrayList<>();
-        heroEntity.add(new HeroEntity("batman"));
+        heroEntity.add(new HeroEntity(heroDto.getImage(),heroDto.getName(),heroDto.getHeroName(),heroDto.getHeight(),heroDto.getWeight(),heroDto.getSpecialPower(),heroDto.getIntelligence(),heroDto.getStrength(),heroDto.getPower(),heroDto.getSpeed(),heroDto.getAgility(),heroDto.getDescription(),heroDto.getStory()));
         when(heroRepository.findAll()).thenReturn(heroEntity);
 
         List<HeroDto> response = heroService.getAll();
 
         List<HeroDto> expected = new ArrayList<>();
-        expected.add(new HeroDto("batman"));
+        expected.add(heroDto);
         assertEquals(expected, response);
     }
 

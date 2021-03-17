@@ -13,13 +13,15 @@ public class HeroService {
     HeroRepository heroRepository;
 
     public HeroDto postHero(HeroDto hero) {
-        HeroEntity saveEntity = new HeroEntity(hero.getName());
+        HeroEntity saveEntity = new HeroEntity(hero.getImage(),hero.getName(),hero.getHeroName(),hero.getHeight(),hero.getWeight(),hero.getSpecialPower(),hero.getIntelligence(),hero.getStrength(),hero.getPower(),hero.getSpeed(),hero.getAgility(),hero.getDescription(),hero.getStory());
         HeroEntity saved = heroRepository.save(saveEntity);
-        return new HeroDto(saved.getName());
+        return new HeroDto(saved.getImage(),saved.getName(),saved.getHeroName(),saved.getHeight(),saved.getWeight(),saved.getSpecialPower(),saved.getIntelligence(),saved.getStrength(),saved.getPower(),saved.getSpeed(),saved.getAgility(),saved.getDescription(),saved.getStory());
     }
 
     public List<HeroDto> getAll() {
         List<HeroEntity> heroEntityList = heroRepository.findAll();
-        return heroEntityList.stream().map(heroEntity -> new HeroDto(heroEntity.getName())).collect(Collectors.toList());
+        return heroEntityList.stream().map(heroEntity ->
+                new HeroDto(heroEntity.getImage(),heroEntity.getName(),heroEntity.getHeroName(),heroEntity.getHeight(),heroEntity.getWeight(),heroEntity.getSpecialPower(),heroEntity.getIntelligence(),heroEntity.getStrength(),heroEntity.getPower(),heroEntity.getSpeed(),heroEntity.getAgility(),heroEntity.getDescription(),heroEntity.getStory()))
+                .collect(Collectors.toList());
     }
 }
