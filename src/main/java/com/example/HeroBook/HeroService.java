@@ -24,4 +24,11 @@ public class HeroService {
                 new HeroDto(heroEntity.getImage(),heroEntity.getName(),heroEntity.getHeroName(),heroEntity.getHeight(),heroEntity.getWeight(),heroEntity.getSpecialPower(),heroEntity.getIntelligence(),heroEntity.getStrength(),heroEntity.getPower(),heroEntity.getSpeed(),heroEntity.getAgility(),heroEntity.getDescription(),heroEntity.getStory()))
                 .collect(Collectors.toList());
     }
+
+    public HeroDto getSpecificHero(String name) {
+        HeroEntity heroEntity =heroRepository.findByName(name);
+        System.out.println(heroEntity);
+        return new HeroDto(heroEntity.getImage(),heroEntity.getName(),heroEntity.getHeroName(),heroEntity.getHeight(),heroEntity.getWeight(),heroEntity.getSpecialPower(),heroEntity.getIntelligence(),heroEntity.getStrength(),heroEntity.getPower(),heroEntity.getSpeed(),heroEntity.getAgility(),heroEntity.getDescription(),heroEntity.getStory());
+
+    }
 }

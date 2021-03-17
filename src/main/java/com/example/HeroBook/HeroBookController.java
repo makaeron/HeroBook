@@ -1,10 +1,7 @@
 package com.example.HeroBook;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,12 @@ public class HeroBookController {
     @GetMapping("/hero")
     public List<HeroDto> getHero(){
         return  heroService.getAll();
+    }
+
+    @GetMapping("/hero/{name}")
+    public HeroDto getSpecificHero(@PathVariable String name){
+        return heroService.getSpecificHero(name);
+        //@RequestVarible if ? used
     }
 
 }

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HeroRepository extends JpaRepository<HeroEntity, Long>{
 
+        HeroEntity findByName(String name);
+
 }

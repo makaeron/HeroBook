@@ -3,7 +3,10 @@ package com.example.HeroBook;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class HeroBookTest {
     //When I view all the heros
     //Then I can see names of all heros
@@ -25,6 +29,7 @@ public class HeroBookTest {
     MockMvc mockmvc;
 
     @Test
+    @Order(1)
     public void postHerosTest() throws Exception {
         HeroDto heroDto = new HeroDto("img","Clark","superman",6.1,180,"heat vision",160,250,"Flight",200,20,"Man of steel","alien from destroyed planet");
         ObjectMapper objectMapper = new ObjectMapper();
@@ -48,6 +53,7 @@ public class HeroBookTest {
     }
 
     @Test
+    @Order(2)
     public void getHeroTest() throws Exception {
         // Call controller
         // that will call service
@@ -60,10 +66,29 @@ public class HeroBookTest {
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("Bruce"));
+
         mockmvc.perform(get("/hero")
                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isOk())
                 .andExpect(jsonPath("length()").value(2))
                 .andExpect(jsonPath("[0].name").value("Clark"));
     }
+
+    @Test
+    @Order(3)
+    public void getSpecificHeroDetails() throws Exception {
+        mockmvc.perform(get("/hero/Clark")
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("Clark"));
+    }
+    /*@Test
+    @Order(3)
+    public void getInvalidSpecificHeroDetails() throws Exception {
+        mockmvc.perform(get("/hero/Clark123")
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("Clark123"));
+    }*/
+
 }
