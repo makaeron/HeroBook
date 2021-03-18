@@ -2,6 +2,7 @@ package com.example.HeroBook;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -21,4 +22,6 @@ public class HeroDto {
     double agility;
     String description; 
     String story;
+
+
 }

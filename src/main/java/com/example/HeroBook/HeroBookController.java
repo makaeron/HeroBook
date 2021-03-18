@@ -10,20 +10,24 @@ public class HeroBookController {
 
     @Autowired
     HeroService heroService;
+
     @PostMapping("/hero")
-    public HeroDto addHero(@RequestBody HeroDto heroDto){
+    public HeroDto addHero(@RequestBody HeroDto heroDto) {
         return heroService.postHero(heroDto);
 
 
     }
+
     @GetMapping("/hero")
-    public List<HeroDto> getHero(){
-        return  heroService.getAll();
+    public List<HeroDto> getHero() {
+        return heroService.getAll();
     }
 
     @GetMapping("/hero/{name}")
-    public HeroDto getSpecificHero(@PathVariable String name){
-        return heroService.getSpecificHero(name);
+    public Object getSpecificHero(@PathVariable String name) {
+        HeroDto dto = heroService.getSpecificHero(name);
+        return (dto == null) ? "Hero not found" : dto;
+
         //@RequestVarible if ? used
     }
 
