@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 public class VillainBookController {
 
-
     @PostMapping("/villains")
     public VillainDto postVillain(@RequestBody VillainDto villainDto){
         return villainDto;
@@ -19,8 +18,6 @@ public class VillainBookController {
 
     @GetMapping("/villains")
     public List<VillainDto> getVillain(){
-
         return new ArrayList<VillainDto>() ;
     }
-
 }
