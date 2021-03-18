@@ -1,4 +1,4 @@
-package com.example.HeroBook;
+package com.example.HeroBook.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

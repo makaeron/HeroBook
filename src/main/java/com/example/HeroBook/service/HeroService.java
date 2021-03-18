@@ -1,5 +1,8 @@
-package com.example.HeroBook;
+package com.example.HeroBook.service;
 
+import com.example.HeroBook.repository.HeroRepository;
+import com.example.HeroBook.models.HeroDto;
+import com.example.HeroBook.models.HeroEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

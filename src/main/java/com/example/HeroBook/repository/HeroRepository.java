@@ -1,5 +1,6 @@
-package com.example.HeroBook;
+package com.example.HeroBook.repository;
 
+import com.example.HeroBook.models.HeroEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,7 @@
-package com.example.HeroBook;
+package com.example.HeroBook.controller;
 
+import com.example.HeroBook.service.HeroService;
+import com.example.HeroBook.models.HeroDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
